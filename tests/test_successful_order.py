@@ -6,49 +6,42 @@ from pages.for_whom_page import ForWhom
 from pages.about_renting import About_Renting
 from data.data import *
 
-@allure.feature("Заказ самоката")
-class TestSuccessfulOrder: 
+
+class TestSuccessfulOrder:
+
     @pytest.mark.parametrize(
-        "order_button, name, surname, address, phone, metro, rent_period, color, comment",
+        "click_order, order_key",
         [
-            ("top",    name_1, surname_1, address_1, phone_1, metro_1, rent_period_1_day, "black", comment_1),
-            ("bottom", name_2, surname_2, address_2, phone_2, metro_2, rent_period_2_day, "grey",  comment_2),
+            (MainPage.click_order_top, "top"),
+            (MainPage.click_order_bottom, "bottom"),
         ],
         ids=["order_top_button", "order_bottom_button"]
     )
-    def test_successful_order(self, driver, order_button, name, surname, address, phone, metro, rent_period, color, comment):
+
+    @allure.title("Успешный заказа самоката")
+    def test_successful_order(self, driver, click_order, order_key):
+        data = ORDER_DATA[order_key]
         main = MainPage(driver)
         main.open_main_page()
-
+        click_order(main)
         
-        if order_button == "top":
-            main.click_order_top()
-        else:
-            main.click_order_bottom()
-
-        
+        # Заполнение первой формы
         who = ForWhom(driver)
-        who.set_name(name)
-        who.set_surname(surname)
-        who.set_address(address)
-        who.set_phone(phone)
-        who.choose_metro(metro)
+        who.set_name(data["name"])
+        who.set_surname(data["surname"])
+        who.set_address(data["address"])
+        who.set_phone(data["phone"])
+        who.choose_metro(data["metro"])
         who.click_next()
-
         
+        # Заполнение второй формы
         rent = About_Renting(driver)
         rent.select_a_date()
-        rent.choose_rent_period(rent_period)
-
-        if color == "black":
-            rent.choose_the_color_black()
-        else:
-            rent.choose_the_color_grey()
-
-        rent.write_a_comment(comment)
+        rent.choose_rent_period(data["rent_period"])
+        rent.choose_the_color_black()
+        rent.write_a_comment(data["comment"])
         rent.order_button()
         rent.yes_button()
-
         rent.assert_view_status_button()
 
 

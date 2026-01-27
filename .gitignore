@@ -9,6 +9,7 @@ venv/
 # Allure
 allure-results/
 allure_results/
+allure_result/
 
 # IDE
 .vscode/
