@@ -15,12 +15,7 @@ class About_Renting(BasePage):
     @allure.step("Выбрать срок аренды: {period_text}")
     def choose_rent_period(self, period_text: str):
         self.click(RENT_PERIOD_DROPDOWN)
-
-        option_locator = (
-            By.XPATH,
-            f"//div[contains(@class,'Dropdown-option') and normalize-space()='{period_text}']"
-        )
-        self.click(option_locator)
+        self.click(rent_period_option_locator(period_text))
 
     @allure.step("Выбрать цвет самоката 'чёрный жемчуг'")
     def choose_the_color_black(self):
@@ -46,4 +41,3 @@ class About_Renting(BasePage):
     def wait_view_status_button(self):
         return self.wait_clickable(VIEW_STATUS_BUTTON)
         
-

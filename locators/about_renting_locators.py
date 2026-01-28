@@ -11,3 +11,6 @@ ORDER_BUTTON = (By.XPATH, "//div[contains(@class,'Order_Buttons')]//button[norma
 YES_BUTTON = (By.XPATH, "//div[contains(@class,'Order_Modal')]//button[normalize-space()='Да']")
 VIEW_STATUS_BUTTON = (By.XPATH, "//button[normalize-space()='Посмотреть статус']")
 ORDER_DONE_TITLE = (By.CLASS_NAME, "Order_ModalHeader")  
+
+def rent_period_option_locator(period_text: str):
+    return (By.XPATH, f"//div[contains(@class,'Dropdown-option') and normalize-space()='{period_text}']")

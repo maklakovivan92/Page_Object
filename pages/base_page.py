@@ -53,6 +53,5 @@ class BasePage:
     def scroll_to_locator(self, locator):
         el = self.wait_presence(locator)
         self.scroll_to_element(el)
-        return el
     
     

@@ -5,12 +5,13 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
 from locators.for_whom_locators import *
 from pages.base_page import BasePage
+from data.constants import *
 
 class ForWhom(BasePage):
 
     @allure.step("Открыть страницу заказа")
     def open_order_page(self):
-        self.open(URL)
+        self.open(MAIN_URL)
 
     @allure.step("Ввести имя: {name}")
     def set_name(self, name: str):
