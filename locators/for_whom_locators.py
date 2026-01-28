@@ -10,3 +10,5 @@ NEXT_BUTTON = (By.XPATH, "//button[normalize-space()='Далее']")
 LOGO_SCOOTER = (By.XPATH, "//a[contains(@class,'Header_LogoScooter')]")
 YANDEX_LOGO = (By.CSS_SELECTOR, "a.Header_LogoYandex__3TSOI")
 URL = "https://qa-scooter.praktikum-services.ru/order"
+MAIN_URL = "https://qa-scooter.praktikum-services.ru/"
+DZEN_URL_PART = "dzen.ru"

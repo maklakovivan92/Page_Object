@@ -42,6 +42,8 @@ class TestSuccessfulOrder:
         rent.write_a_comment(data["comment"])
         rent.order_button()
         rent.yes_button()
-        rent.assert_view_status_button()
+        view_status_btn = rent.wait_view_status_button()
+        
+        assert view_status_btn.is_displayed()
 
 
